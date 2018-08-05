@@ -27,11 +27,16 @@ export class UsersComponent implements OnInit {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.loaded = true;
-    this.users = this.dataService.getUsers();
+    this.dataService.getUsers().subscribe(users => {
+      this.users = users;
+      this.loaded = true;
+    });
+
     this.dataService.getData().subscribe(data => {
       console.log(data);
     });
+
+
     this.setCurrentClasses();
     this.setCurrentStyles();
 
