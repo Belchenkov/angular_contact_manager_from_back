@@ -1,6 +1,7 @@
 <div class="container">
   <app-post-form
     (newPost)="onNewPost($event)"
+    (updatedPost)="onUpdatedPost($event)"
     [currentPost]="currentPost"
     [isEdit]="isEdit"
   ></app-post-form>
