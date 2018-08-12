@@ -1,0 +1,126 @@
+<div class="user">
+  <button
+    class="btn btn-dark mb-3"
+    (click)="showUserForm = !showUserForm"
+  >
+    <i class="fa fa-user-plus"></i>
+    Добавить сотрудника
+  </button>
+  <div
+    *ngIf="showUserForm"
+  >
+    <h2 class="card card-body mb-4 text-width">Добавить сотрудника</h2>
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+      <div class="form-group">
+        <label class="text-white font-weight-bold">Имя</label>
+        <input
+          [(ngModel)]="user.firstName"
+          type="text"
+          class="form-control"
+          [ngClass]="{'is-invalid': userFirstName.errors && userFirstName.touched}"
+          name="firstName"
+          #userFirstName="ngModel"
+          required
+          minlength="2"
+        />
+        <div
+          [hidden]="!userFirstName.errors?.required"
+          class="invalid-feedback"
+        >Обязательное поле</div>
+        <div
+          class="invalid-feedback"
+          [hidden]="!userFirstName.errors?.minlength"
+        >Не менее 2-х символов</div>
+      </div>
+      <div class="form-group">
+        <label class="text-white font-weight-bold">Фамилия</label>
+        <input
+          type="text"
+          class="form-control"
+          name="lastName"
+          [(ngModel)]="user.lastName"
+          [ngClass]="{'is-invalid': userLastName.errors && userLastName.touched}"
+          #userLastName="ngModel"
+          required
+          minlength="2"
+        />
+        <div
+          [hidden]="!userLastName.errors?.required"
+          class="invalid-feedback"
+        >Обязательное поле</div>
+        <div
+          class="invalid-feedback"
+          [hidden]="!userLastName.errors?.minlength"
+        >Не менее 2-х символов</div>
+      </div>
+      <div class="form-group">
+        <label class="text-white font-weight-bold">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          [(ngModel)]="user.email"
+          [ngClass]="{'is-invalid': userEmail.errors && userEmail.touched}"
+          #userEmail="ngModel"
+          required
+          pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+        />
+        <div
+          [hidden]="!userEmail.errors?.required"
+          class="invalid-feedback"
+        >Обязательное поле</div>
+        <div
+          class="invalid-feedback"
+          [hidden]="!userEmail.errors?.pattern"
+        >Невалидный Email</div>
+      </div>
+      <button
+        class="btn btn-block btn-dark my-3"
+        [disabled]="!userForm.form.valid"
+        [ngClass]="currentClasses"
+      >
+        Добавить сотрудника
+      </button>
+    </form>
+  </div>
+  <h1 class="text-white mb-4">
+    <i class="fa fa-users"></i> Сотрудники</h1>
+  <ul
+    *ngIf="loaded && users?.length > 0"
+    class="list-unstyled"
+  >
+    <li
+      class="card card-body mb-2"
+      *ngFor="let user of users"
+      [class.bg-light]="user.isActive"
+    >
+      <h3 [ngStyle]="currentStyles">
+        <i class="fa fa-address-book-o mr-2"></i>
+        {{ user.firstName }}
+        {{ user.lastName }}
+        <small>
+          <button
+            class="btn btn-dark btn-sm ml-2"
+            (click)="user.hide = !user.hide"
+          >
+            <i
+              [ngClass]="user.hide ? 'fa fa-plus' : 'fa fa-minus'"
+            ></i>
+          </button>
+        </small>
+      </h3>
+      <ul
+        class="list-group"
+        *ngIf="!user.hide"
+      >
+        <li class="list-group-item">
+          <i class="fa fa-envelope  mr-2"></i> Email: {{ user.email }}</li>
+        <li class="list-group-item">
+          <i class="fa fa-registered  mr-2"></i> Зарегистрирован: {{user.registered | date : "dd/MM/yyyy"}}
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4 *ngIf="users?.length < 0">Сотрудники отсутствуют</h4>
+  <h4 *ngIf="!loaded">Загрузка...</h4></div>
