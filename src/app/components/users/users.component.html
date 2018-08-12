@@ -2,15 +2,17 @@
   <button
     class="btn btn-dark mb-3"
     (click)="showUserForm = !showUserForm"
-  >Добавить сотрудника
+  >
+    <i class="fa fa-user-plus"></i>
+    Добавить сотрудника
   </button>
   <div
     *ngIf="showUserForm"
   >
-    <h2 class="card card-body">Добавить сотрудника</h2>
+    <h2 class="card card-body mb-4 text-width">Добавить сотрудника</h2>
     <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
       <div class="form-group">
-        <label>Имя</label>
+        <label class="text-white font-weight-bold">Имя</label>
         <input
           [(ngModel)]="user.firstName"
           type="text"
@@ -31,7 +33,7 @@
         >Не менее 2-х символов</div>
       </div>
       <div class="form-group">
-        <label>Фамилия</label>
+        <label class="text-white font-weight-bold">Фамилия</label>
         <input
           type="text"
           class="form-control"
@@ -52,7 +54,7 @@
         >Не менее 2-х символов</div>
       </div>
       <div class="form-group">
-        <label>Email</label>
+        <label class="text-white font-weight-bold">Email</label>
         <input
           type="email"
           class="form-control"
@@ -81,7 +83,8 @@
       </button>
     </form>
   </div>
-  <h1>Сотрудники</h1>
+  <h1 class="text-white mb-4">
+    <i class="fa fa-users"></i> Сотрудники</h1>
   <ul
     *ngIf="loaded && users?.length > 0"
     class="list-unstyled"
@@ -92,11 +95,12 @@
       [class.bg-light]="user.isActive"
     >
       <h3 [ngStyle]="currentStyles">
+        <i class="fa fa-address-book-o mr-2"></i>
         {{ user.firstName }}
         {{ user.lastName }}
         <small>
           <button
-            class="btn btn-dark btn-sm"
+            class="btn btn-dark btn-sm ml-2"
             (click)="user.hide = !user.hide"
           >
             <i
@@ -109,8 +113,11 @@
         class="list-group"
         *ngIf="!user.hide"
       >
-        <li class="list-group-item">Email: {{ user.email }}</li>
-        <li class="list-group-item">Зарегистрирован: {{user.registered | date : "dd/MM/yyyy"}}</li>
+        <li class="list-group-item">
+          <i class="fa fa-envelope  mr-2"></i> Email: {{ user.email }}</li>
+        <li class="list-group-item">
+          <i class="fa fa-registered  mr-2"></i> Зарегистрирован: {{user.registered | date : "dd/MM/yyyy"}}
+        </li>
       </ul>
     </li>
   </ul>

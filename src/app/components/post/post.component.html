@@ -4,7 +4,11 @@
 
 <div *ngIf="post" class="card">
   <div class="card-body">
-    <h4 class="display-4">{{ post.title }}</h4>
-    <p class="font-italic">{{ post.body }}</p>
+    <h2 class="card-header mb-4">
+      <i class="fa fa-newspaper-o"></i> {{ post.title }}
+    </h2>
+    <p class="font-italic">
+      <i class="fa fa-commenting"></i> {{ post.body }}
+    </p>
   </div>
 </div>
