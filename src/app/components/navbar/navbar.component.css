@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+.navbar {
+  font-family: 'Indie Flower', cursive;
+  font-style: italic;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.navbar-nav {
+  flex-direction: row;
+}
+
+.nav-item {
+  margin-right: 14px;
+}
+
+.nav-link,
+.fa {
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
