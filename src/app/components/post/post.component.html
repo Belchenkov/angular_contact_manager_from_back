@@ -1,0 +1,10 @@
+<a routerLink="/posts" class="btn btn-dark btn-sm mb-3">
+  <i class="fa fa-long-arrow-left"></i> Назад
+</a>
+
+<div *ngIf="post" class="card">
+  <div class="card-body">
+    <h4 class="display-4">{{ post.title }}</h4>
+    <p class="font-italic">{{ post.body }}</p>
+  </div>
+</div>
