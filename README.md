@@ -1,4 +1,4 @@
-# Angular 6 Blog of News
+# Angular 6 Contacts Manage
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.1.
 
